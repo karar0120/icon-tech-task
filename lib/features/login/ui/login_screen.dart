@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:icon_tech_task/core/helper/spacing.dart';
+import 'package:icon_tech_task/features/login/ui/widget/build_form_field.dart';
+import 'package:icon_tech_task/features/login/ui/widget/build_login_button.dart';
+import 'package:icon_tech_task/features/login/ui/widget/build_sign_up_text.dart';
+import 'package:icon_tech_task/features/login/ui/widget/build_text_login.dart';
+import 'package:icon_tech_task/features/login/ui/widget/login_bloc_listener.dart';
+
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+          child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              const BuildTextLogin(),
+              verticalSpace(36),
+              const BuildFormFieldEmailAndPassword(),
+              verticalSpace(16),
+              const LoginButton(),
+              verticalSpace(16),
+              const DontHaveAccountText(),
+              verticalSpace(16),
+              const LoginBlocListener(),
+            ],
+          ),
+        ),
+      )),
+    );
+  }
+}
