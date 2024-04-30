@@ -3,11 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icon_tech_task/core/helper/spacing.dart';
 import 'package:icon_tech_task/features/login/ui/widget/build_form_field.dart';
 import 'package:icon_tech_task/features/login/ui/widget/build_login_button.dart';
+import 'package:icon_tech_task/features/login/ui/widget/build_sign_up_text.dart';
 import 'package:icon_tech_task/features/login/ui/widget/build_text_login.dart';
 import 'package:icon_tech_task/features/login/ui/widget/login_bloc_listener.dart';
-import 'package:icon_tech_task/features/login/ui/widget/terms_and_conditions.dart';
-
-import 'widget/build_sign_up_text.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -26,12 +24,11 @@ class LoginScreen extends StatelessWidget {
               const BuildTextLogin(),
               verticalSpace(36),
               const BuildFormFieldEmailAndPassword(),
-              verticalSpace(24),
+              verticalSpace(16),
               const LoginButton(),
               verticalSpace(16),
-              const TermsAndConditionsText(),
-              verticalSpace(10),
               const DontHaveAccountText(),
+              verticalSpace(16),
               const LoginBlocListener(),
             ],
           ),

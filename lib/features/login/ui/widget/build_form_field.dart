@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icon_tech_task/core/helper/app_regex.dart';
 import 'package:icon_tech_task/core/helper/spacing.dart';
+import 'package:icon_tech_task/core/helper/strings_manger.dart';
 import 'package:icon_tech_task/core/widget/app_text_form_field.dart';
 import 'package:icon_tech_task/features/login/logic/cubit/login_cubit.dart';
-import 'package:icon_tech_task/features/login/ui/widget/password_validations.dart';
 
 import '../../../../core/theming/color.dart';
 import '../../../../core/theming/styles.dart';
@@ -22,21 +22,6 @@ class _BuildFormFieldEmailAndPasswordState
     extends State<BuildFormFieldEmailAndPassword> {
   bool isObscureText = true;
 
-  bool hasLowerCase = false;
-  bool hasUpperCase = false;
-  bool hasSpecialCharacters = false;
-  bool hasNumber = false;
-  bool hasMinLength = false;
-
-  late TextEditingController passwordController;
-  @override
-  void initState() {
-    passwordController =
-        context.read<LoginCubit>().passwordTextEditingController;
-    setupPasswordControllerListener();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -44,19 +29,19 @@ class _BuildFormFieldEmailAndPasswordState
       child: Column(
         children: [
           AppTextFormField(
-            hintText: "Email",
+            hintText: AppString.phone,
             controller: context.read<LoginCubit>().emailTextEditingController,
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
-                  !AppRegex.isEmailValid(value)) {
+                  !AppRegex.isPhoneNumberValid(value)) {
                 return "Please Enter Your Email";
               }
             },
           ),
           verticalSpace(18),
           AppTextFormField(
-            hintText: "Password",
+            hintText: AppString.password,
             controller:
                 context.read<LoginCubit>().passwordTextEditingController,
             isObscureText: isObscureText,
@@ -76,16 +61,9 @@ class _BuildFormFieldEmailAndPasswordState
                   : const Icon(Icons.visibility),
             ),
           ),
-          verticalSpace(24),
-          PasswordValidations(
-              hasLowerCase: hasLowerCase,
-              hasUpperCase: hasUpperCase,
-              hasSpecialCharacters: hasSpecialCharacters,
-              hasNumber: hasNumber,
-              hasMinLength: hasMinLength),
           verticalSpace(18),
           Align(
-            alignment: AlignmentDirectional.centerEnd,
+            alignment: AlignmentDirectional.center,
             child: TextButton(
               onPressed: () {},
               child: Text(
@@ -100,24 +78,5 @@ class _BuildFormFieldEmailAndPasswordState
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    passwordController.dispose();
-    super.dispose();
-  }
-
-  void setupPasswordControllerListener() {
-    passwordController.addListener(() {
-      setState(() {
-        hasLowerCase = AppRegex.hasLowerCase(passwordController.text);
-        hasUpperCase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters =
-            AppRegex.hasSpecialCharacter(passwordController.text);
-        hasNumber = AppRegex.hasNumber(passwordController.text);
-        hasMinLength = AppRegex.hasMinLength(passwordController.text);
-      });
-    });
   }
 }
