@@ -60,7 +60,7 @@ void setupErrorState(BuildContext context, String error) {
             context.pop();
           },
           child: Text(
-            'Got it',
+            'اغلاق',
             style: TextStyles.font14BlueSemiBold,
           ),
         ),
