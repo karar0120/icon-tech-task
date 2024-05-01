@@ -2,6 +2,10 @@ class ApiConstants {
   static const String baseUrl = "https://nottr.app/api/";
   static const String login = "auth/login";
   static const String restaurantBranchesOnMap = "branches";
+  static const String restaurantBranchesCategories =
+      "branch/{branch_id}/categories";
+  static const String restaurantBranchesProduct =
+      "branch/{branch_id}/category/{category_id}/products";
 }
 
 class ApiErrors {

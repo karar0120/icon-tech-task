@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:icon_tech_task/core/helper/extensions.dart';
+import 'package:icon_tech_task/core/routing/routes.dart';
 import 'package:icon_tech_task/features/restaurant/data/models/get_restaurant_branche_query_params.dart';
 import 'package:icon_tech_task/features/restaurant/domain/entity/restaurant.dart';
 import 'package:icon_tech_task/features/restaurant/domain/use_case/get_restaurant_branches.dart';
@@ -16,7 +18,7 @@ class GetRestaurantBranchesCubit extends Cubit<GetRestaurantBranchesState> {
 
   var markers = <Marker>{};
 
-  void emitGetRestaurantBranchesState() async {
+  void emitGetRestaurantBranchesState(BuildContext context) async {
     emit(GetRestaurantBranchesLoading());
     final response = await getRestaurantBranchesUseCase.execute(
         GetRestaurantBranchesQueryParams(
@@ -24,7 +26,7 @@ class GetRestaurantBranchesCubit extends Cubit<GetRestaurantBranchesState> {
     response.when(success: (restaurantBranchesResponse) {
       restaurantBranchesDate
           .addAll(restaurantBranchesResponse.restaurantBranches);
-      createMarkers();
+      createMarkers(context);
       emit(GetRestaurantBranchesLoaded(
           restaurantBranchesDate: restaurantBranchesDate));
     }, failure: (error) {
@@ -32,7 +34,7 @@ class GetRestaurantBranchesCubit extends Cubit<GetRestaurantBranchesState> {
     });
   }
 
-  void createMarkers() {
+  void createMarkers(BuildContext context) {
     for (var element in restaurantBranchesDate) {
       markers.add(
         Marker(
@@ -44,7 +46,9 @@ class GetRestaurantBranchesCubit extends Cubit<GetRestaurantBranchesState> {
           ),
           infoWindow:
               InfoWindow(title: element.title.en, snippet: element.statusEn),
-          onTap: () {},
+          onTap: () {
+            context.pushNamed(Routes.getRestaurantCategoriesScreen);
+          },
         ),
       );
     }

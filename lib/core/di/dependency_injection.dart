@@ -7,8 +7,11 @@ import 'package:icon_tech_task/core/networking/netwotk_info.dart';
 import 'package:icon_tech_task/features/login/data/repos/login_repo.dart';
 import 'package:icon_tech_task/features/login/logic/cubit/login_cubit.dart';
 import 'package:icon_tech_task/features/restaurant/data/repos/irepository.dart';
+import 'package:icon_tech_task/features/restaurant/domain/use_case/get_products.dart';
 import 'package:icon_tech_task/features/restaurant/domain/use_case/get_restaurant_branches.dart';
+import 'package:icon_tech_task/features/restaurant/domain/use_case/get_restaurant_branches_categories.dart';
 import 'package:icon_tech_task/features/restaurant/presentation/controllers/get_restaurant_branches_cubit/get_restaurant_branches_cubit.dart';
+import 'package:icon_tech_task/features/restaurant/presentation/controllers/get_restaurant_product_cubit/get_restaurant_product_cubit.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -56,5 +59,23 @@ Future<void> initGetRestrantModule() async {
         GetRestaurantBranchesCubit(
             getRestaurantBranchesUseCase:
                 getIt<GetRestaurantBranchesUseCase>()));
+  }
+}
+
+Future<void> initGetRestrantProductModule() async {
+  if (!GetIt.I.isRegistered<GetRestaurantBranchesCategoriesUseCase>()) {
+    getIt.registerFactory<GetRestaurantBranchesCategoriesUseCase>(
+        () => GetRestaurantBranchesCategoriesUseCase(
+              restaurantBranchesRepository: getIt(),
+            ));
+    getIt.registerFactory<GetProductsUseCase>(() => GetProductsUseCase(
+          restaurantBranchesRepository: getIt(),
+        ));
+    getIt.registerFactory<GetRestaurantProductCubit>(
+        () => GetRestaurantProductCubit(
+              getRestaurantBranchesCategoriesUseCase:
+                  getIt<GetRestaurantBranchesCategoriesUseCase>(),
+              getProductsUseCase: getIt<GetProductsUseCase>(),
+            ));
   }
 }
