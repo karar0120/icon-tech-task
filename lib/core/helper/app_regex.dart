@@ -11,7 +11,9 @@ class AppRegex {
   }
 
   static bool isPhoneNumberValid(String phoneNumber) {
-    return RegExp(r'^(010|011|012|015)[0-9]{8}$').hasMatch(phoneNumber);
+    return RegExp(
+            r'^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$')
+        .hasMatch(phoneNumber);
   }
 
   static bool hasLowerCase(String password) {

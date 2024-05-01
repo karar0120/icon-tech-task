@@ -6,4 +6,5 @@ class Constances {
   static const accessToken = "accessToken";
   static const empty = '';
   static const int zero = 0;
+  static const double zeroPoint = 0.0;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icon_tech_task/core/helper/extensions.dart';
+import 'package:icon_tech_task/core/routing/routes.dart';
 import 'package:icon_tech_task/features/login/logic/cubit/login_cubit.dart';
 
 import '../../../../core/theming/color.dart';
@@ -20,13 +21,13 @@ class LoginBlocListener extends StatelessWidget {
             context: context,
             builder: (context) => const Center(
               child: CircularProgressIndicator(
-                color: ColorsManager.mainBlue,
+                color: ColorsManager.mainGreen,
               ),
             ),
           );
         }, success: (loginResponse) {
           context.pop();
-          //context.pushNamed(Routes.homeScreens);
+          context.pushNamed(Routes.getRestaurantBanchesScreen);
         }, error: (error) {
           setupErrorState(context, error);
         });

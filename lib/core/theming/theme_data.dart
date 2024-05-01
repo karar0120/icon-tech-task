@@ -3,7 +3,12 @@ import 'package:icon_tech_task/core/theming/color.dart';
 
 ThemeData themeData = ThemeData(
     appBarTheme: const AppBarTheme(backgroundColor: ColorsManager.dark),
-    primaryColor: ColorsManager.mainBlue,
+    primaryColor: ColorsManager.mainGreen,
     scaffoldBackgroundColor: Colors.white,
     cardColor: ColorsManager.dark,
-    indicatorColor: ColorsManager.gray);
+    indicatorColor: ColorsManager.gray,
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: ColorsManager.mainGreen,
+      selectionColor: ColorsManager.mainGreen,
+      selectionHandleColor: ColorsManager.mainGreen,
+    ));

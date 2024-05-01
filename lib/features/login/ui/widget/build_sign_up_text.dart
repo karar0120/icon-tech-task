@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:icon_tech_task/core/helper/strings_manger.dart';
+import 'package:icon_tech_task/core/theming/color.dart';
 
 import '../../../../core/theming/styles.dart';
 
@@ -13,12 +15,14 @@ class DontHaveAccountText extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Don\'t have an account?',
-            style: TextStyles.font13DarkBlueRegular,
+            text: AppString.donotHaveAnAccount,
+            style: TextStyles.font16WhiteSemiBold
+                .copyWith(color: ColorsManager.lightGray),
           ),
           TextSpan(
-            text: ' Sign Up',
-            style: TextStyles.font13BlueSemiBold,
+            text: AppString.signUp,
+            style: TextStyles.font16WhiteSemiBold
+                .copyWith(color: ColorsManager.dark),
             recognizer: TapGestureRecognizer()..onTap = () {},
           ),
         ],

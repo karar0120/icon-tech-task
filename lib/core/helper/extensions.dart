@@ -62,3 +62,13 @@ extension NonNullInteger on int? {
     }
   }
 }
+
+extension NonNullDouble on double? {
+  double orZeroPoint() {
+    if (this == null) {
+      return 0;
+    } else {
+      return this!;
+    }
+  }
+}

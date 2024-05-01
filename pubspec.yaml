@@ -72,6 +72,11 @@ dependencies:
   #A collection of loading indicators animated with flutter. Heavily inspired by @tobiasahlin's SpinKit.
   flutter_spinkit: ^5.1.0
   loading_animation_widget: ^1.2.0+4
+  #A Flutter plugin for integrating Google Maps in iOS and Android applications
+  google_maps_flutter: ^2.2.1
+  #Cross-platform plugin for easy access to device's location in real-time.
+  location: ^4.4.0
+  geolocator: ^11.0.0
 
 dev_dependencies:
   flutter_test:
@@ -97,8 +102,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+   - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

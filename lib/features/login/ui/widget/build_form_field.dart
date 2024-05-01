@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icon_tech_task/core/helper/app_regex.dart';
 import 'package:icon_tech_task/core/helper/spacing.dart';
 import 'package:icon_tech_task/core/helper/strings_manger.dart';
+import 'package:icon_tech_task/core/helper/values_manger.dart';
 import 'package:icon_tech_task/core/widget/app_text_form_field.dart';
 import 'package:icon_tech_task/features/login/logic/cubit/login_cubit.dart';
 
 import '../../../../core/theming/color.dart';
 import '../../../../core/theming/styles.dart';
 
-class BuildFormFieldEmailAndPassword extends StatefulWidget {
-  const BuildFormFieldEmailAndPassword({super.key});
+class BuildFormFieldPhoneAndPassword extends StatefulWidget {
+  const BuildFormFieldPhoneAndPassword({super.key});
 
   @override
-  State<BuildFormFieldEmailAndPassword> createState() =>
-      _BuildFormFieldEmailAndPasswordState();
+  State<BuildFormFieldPhoneAndPassword> createState() =>
+      _BuildFormFieldPhoneAndPasswordState();
 }
 
-class _BuildFormFieldEmailAndPasswordState
-    extends State<BuildFormFieldEmailAndPassword> {
+class _BuildFormFieldPhoneAndPasswordState
+    extends State<BuildFormFieldPhoneAndPassword> {
   bool isObscureText = true;
 
   @override
@@ -35,11 +35,11 @@ class _BuildFormFieldEmailAndPasswordState
               if (value == null ||
                   value.isEmpty ||
                   !AppRegex.isPhoneNumberValid(value)) {
-                return "Please Enter Your Email";
+                return AppString.pleaseEnterYourPhone;
               }
             },
           ),
-          verticalSpace(18),
+          verticalSpace(AppSize.s18),
           AppTextFormField(
             hintText: AppString.password,
             controller:
@@ -47,7 +47,7 @@ class _BuildFormFieldEmailAndPasswordState
             isObscureText: isObscureText,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Please Enter Your Password";
+                return AppString.pleaseEnterYourPassword;
               }
             },
             suffixIcon: GestureDetector(
@@ -57,21 +57,25 @@ class _BuildFormFieldEmailAndPasswordState
                 });
               },
               child: isObscureText
-                  ? const Icon(Icons.visibility_off)
-                  : const Icon(Icons.visibility),
+                  ? const Icon(
+                      Icons.visibility_off,
+                      color: ColorsManager.mainGreen,
+                    )
+                  : const Icon(
+                      Icons.visibility,
+                      color: ColorsManager.mainGreen,
+                    ),
             ),
           ),
-          verticalSpace(18),
+          verticalSpace(AppSize.s18),
           Align(
             alignment: AlignmentDirectional.center,
             child: TextButton(
               onPressed: () {},
               child: Text(
-                "Forgot Password?",
-                style: TextStyles.font13BlueRegular.copyWith(
-                  color: ColorsManager.mainBlue,
-                  fontSize: 12.sp,
-                ),
+                AppString.forgotPassword,
+                style: TextStyles.font16WhiteSemiBold
+                    .copyWith(color: ColorsManager.dark),
               ),
             ),
           )

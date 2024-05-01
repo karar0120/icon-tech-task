@@ -7,6 +7,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await ScreenUtil.ensureScreenSize();
-  setupGetIt();
+  await setupGetIt();
   runApp(const IconTechApp());
 }

@@ -5,16 +5,47 @@ import 'package:icon_tech_task/core/helper/constances.dart';
 import 'package:icon_tech_task/core/routing/routes.dart';
 import 'package:icon_tech_task/features/login/logic/cubit/login_cubit.dart';
 import 'package:icon_tech_task/features/login/ui/login_screen.dart';
+import 'package:icon_tech_task/features/restaurant/domain/entity/products.dart';
+import 'package:icon_tech_task/features/restaurant/presentation/controllers/get_restaurant_branches_cubit/get_restaurant_branches_cubit.dart';
+import 'package:icon_tech_task/features/restaurant/presentation/controllers/get_restaurant_product_cubit/get_restaurant_product_cubit.dart';
+import 'package:icon_tech_task/features/restaurant/presentation/ui/screens/product_details_screen.dart';
+import 'package:icon_tech_task/features/restaurant/presentation/ui/screens/restaurant_branches_on_map.dart';
+import 'package:icon_tech_task/features/restaurant/presentation/ui/screens/restaurant_product.dart';
 
 class AppRoute {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.loginScreen:
-        initUsersModule();
         return MaterialPageRoute(
             builder: (context) => BlocProvider<LoginCubit>(
                   create: (context) => getIt<LoginCubit>(),
                   child: const LoginScreen(),
+                ));
+      case Routes.getRestaurantBanchesScreen:
+        initGetRestrantModule();
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider<GetRestaurantBranchesCubit>(
+                  create: (context) => getIt<GetRestaurantBranchesCubit>()
+                    ..emitGetRestaurantBranchesState(context),
+                  child: const RestaurantBranchesOnMap(),
+                ));
+      case Routes.getRestaurantCategoriesScreen:
+        initGetRestrantProductModule();
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider<GetRestaurantProductCubit>(
+                  create: (context) => getIt<GetRestaurantProductCubit>()
+                    ..emitGetRestaurantBranchesState(
+                      id: settings.arguments as int,
+                    )
+                    ..refreshData(branchId: settings.arguments as int),
+                  child: RestaurantProduct(
+                    brunchId: settings.arguments as int,
+                  ),
+                ));
+      case Routes.getProductsDetailsScreen:
+        return MaterialPageRoute(
+            builder: (context) => ProductDetails(
+                  dataProduct: settings.arguments as DataProduct,
                 ));
 
       default:
