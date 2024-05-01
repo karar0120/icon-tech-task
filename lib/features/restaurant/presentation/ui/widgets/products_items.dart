@@ -26,7 +26,7 @@ class ProductsItems extends StatelessWidget {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             mainAxisSpacing: 5.0,
             crossAxisSpacing: 5.0,
-            childAspectRatio: 1 / 1.26,
+            childAspectRatio: 1 / 1.50,
             children: List.generate(productsItems.products.length + 1, (index) {
               if (index < productsItems.products.length) {
                 return InkWell(
