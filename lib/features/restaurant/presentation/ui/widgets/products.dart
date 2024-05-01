@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icon_tech_task/core/helper/spacing.dart';
+import 'package:icon_tech_task/core/helper/strings_manger.dart';
 import 'package:icon_tech_task/core/helper/values_manger.dart';
 import 'package:icon_tech_task/core/theming/color.dart';
 import 'package:icon_tech_task/core/theming/styles.dart';
@@ -16,7 +17,7 @@ class Products extends StatelessWidget {
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       elevation: 5,
-      color: ColorsManager.gray,
+      color: Colors.white,
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,
@@ -24,18 +25,19 @@ class Products extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(AppPadding.p15),
           child: Column(
-            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedImage(imageUrl: product.images.first.image),
               verticalSpace(AppSize.s12),
               Text(
-                product.title.en,
+                product.title.ar,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyles.font16WhiteSemiBold
                     .copyWith(color: ColorsManager.mainGreen),
               ),
               verticalSpace(AppSize.s12),
               Text(
-                product.description.en,
+                product.description.ar,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyles.font14BlueSemiBold
@@ -46,7 +48,7 @@ class Products extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "${product.price} RS",
+                    "${product.price.toStringAsFixed(2)} ${AppString.rs}",
                     style: TextStyles.font14BlueSemiBold
                         .copyWith(color: ColorsManager.dark),
                   ),

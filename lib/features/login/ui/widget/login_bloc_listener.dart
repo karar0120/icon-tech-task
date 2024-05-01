@@ -27,7 +27,10 @@ class LoginBlocListener extends StatelessWidget {
           );
         }, success: (loginResponse) {
           context.pop();
-          context.pushNamed(Routes.getRestaurantBanchesScreen);
+          context.pushNamedAndRemoveUntil(Routes.getRestaurantBanchesScreen,
+              predicate: (Route<dynamic> route) {
+            return false;
+          });
         }, error: (error) {
           setupErrorState(context, error);
         });
@@ -49,7 +52,7 @@ void setupErrorState(BuildContext context, String error) {
       ),
       content: Text(
         error,
-        style: TextStyles.font15DarkBlueMedium,
+        style: TextStyles.font15DarkBlueMedium.copyWith(color: Colors.black),
       ),
       actions: [
         TextButton(

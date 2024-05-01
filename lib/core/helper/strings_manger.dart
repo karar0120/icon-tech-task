@@ -4,23 +4,31 @@ class AppString {
 
   static const String or = 'or';
   static const String nullValue = "NA";
-  static const String login = 'Login';
+  static const String login = 'تسجيل الدخول';
 
-  static const String phone = 'Phone';
-  static const String password = 'Password';
+  static const String phone = 'رقم الجوال';
+  static const String password = 'كلمة المرور';
 
   static const String startLogin = 'تسجيل الدخول';
-  static const String welcomeBack = "Welcome Back";
+  static const String welcomeBack = "لنقم بتسجيل الدخول";
 
-  static const String pleaseEnterYourPhone = 'Please Enter Your Phone';
-  static const String pleaseEnterYourPassword = 'Please Enter Your Password';
+  static const String pleaseEnterYourPhone = 'من فضلك ادخل رقم الجوال';
+  static const String pleaseEnterYourPassword = 'من فضلك ادخل كلمة المرور';
 
-  static const String forgotPassword = 'Forgot Password?';
-  static const String donotHaveAnAccount = "Don't have an account? ";
-  static const String signUp = 'Sign Up';
+  static const String forgotPassword = 'نسيت كلمة المرور؟';
+  static const String donotHaveAnAccount = "ليس لديك حساب؟  ";
+  static const String signUp = 'تسجيل جديد';
 
-  static const String address = 'Address';
-  static const String location = 'Location';
+  static const String address = 'عنوان الفرع';
+  static const String location = 'الوصول الي الفرع';
 
-  static const String viewProductDetails = 'View Product Details';
+  static const String viewProductDetails = 'اظهار منتجات الفرع';
+  static const String specialShormeh = 'ساندويتشات شورميه الخاصة';
+
+  static const String rs = 'رس';
+  static const String addSomeNote = 'ملاحظات اضافية؟';
+
+  static const String addNote = 'اضافة ملاحظة';
+  static const String addToCart = 'اضافة للسلة';
+  static const String cal = 'سعر حراري / قطعة';
 }
