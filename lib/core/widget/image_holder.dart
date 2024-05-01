@@ -40,7 +40,7 @@ class CachedImage extends StatelessWidget {
           width: width ?? AppSize.s90.w,
           placeholder: (context, url) => Center(
             child: LoadingAnimationWidget.discreteCircle(
-                color: ColorsManager.moreLightGray,
+                color: ColorsManager.mainGreen,
                 size: AppSize.s30,
                 secondRingColor: Colors.transparent,
                 thirdRingColor: Colors.transparent),

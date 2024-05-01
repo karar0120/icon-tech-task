@@ -19,8 +19,7 @@ class ProductsItems extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppPadding.p10),
           child: GridView.count(
-            crossAxisCount:
-                productsItems.restaurantBranchesDate.isEmpty ? 1 : 2,
+            crossAxisCount: 2,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icon_tech_task/core/helper/spacing.dart';
+import 'package:icon_tech_task/core/helper/strings_manger.dart';
 import 'package:icon_tech_task/core/helper/values_manger.dart';
 import 'package:icon_tech_task/core/widget/app_bar.dart';
+import 'package:icon_tech_task/core/widget/loader.dart';
 import 'package:icon_tech_task/features/restaurant/presentation/controllers/get_restaurant_product_cubit/get_restaurant_product_cubit.dart';
 import 'package:icon_tech_task/features/restaurant/presentation/ui/widgets/categories.dart';
 import 'package:icon_tech_task/features/restaurant/presentation/ui/widgets/products_items.dart';
@@ -45,7 +47,8 @@ class _RestaurantProductState extends State<RestaurantProduct> {
           child: Scaffold(
               appBar: GeneralAppBar(
                 title: Text(
-                    restaurantProduct.selectedCategoriesItem?.title.en ?? ""),
+                    restaurantProduct.selectedCategoriesItem?.title.ar ??
+                        AppString.specialShormeh),
                 centerTitle: true,
               ),
               body: restaurantProduct.restaurantBranchesDate.isNotEmpty
@@ -61,7 +64,7 @@ class _RestaurantProductState extends State<RestaurantProduct> {
                         const ProductsItems()
                       ],
                     )
-                  : const Center(child: CircularProgressIndicator())),
+                  : const LoaderWidget(sizeLoader: 0.05)),
         );
       },
     );

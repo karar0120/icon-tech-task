@@ -14,7 +14,8 @@ class LoginTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
+      padding: EdgeInsets.symmetric(
+          horizontal: AppPadding.p30.w, vertical: AppPadding.p20.h),
       color: ColorsManager.mainGreen,
       height: AppSize.s120.h,
       child: Row(

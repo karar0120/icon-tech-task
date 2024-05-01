@@ -45,13 +45,13 @@ class GetRestaurantBranchesCubit extends Cubit<GetRestaurantBranchesState> {
             double.parse(element.long),
           ),
           infoWindow:
-              InfoWindow(title: element.title.en, snippet: element.statusEn),
+              InfoWindow(title: element.title.ar, snippet: element.statusAr),
           onTap: () {
             showCustomBottomSheet(context,
                 bottomSheetContent: BranchesDetails(
                   data: element,
                 ),
-                bottomSheetHeight: 0.40);
+                bottomSheetHeight: 0.45);
           },
         ),
       );

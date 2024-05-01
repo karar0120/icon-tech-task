@@ -30,7 +30,7 @@ class _BuildFormFieldPhoneAndPasswordState
         children: [
           AppTextFormField(
             hintText: AppString.phone,
-            controller: context.read<LoginCubit>().emailTextEditingController,
+            controller: context.read<LoginCubit>().phoneTextEditingController,
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||

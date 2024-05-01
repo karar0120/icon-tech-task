@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icon_tech_task/core/theming/color.dart';
-import 'package:icon_tech_task/core/widget/image_holder.dart';
 import 'package:icon_tech_task/features/restaurant/presentation/controllers/get_restaurant_product_cubit/get_restaurant_product_cubit.dart';
+import 'package:icon_tech_task/features/restaurant/presentation/ui/widgets/categories_card.dart';
 
 import '../../../../../core/helper/values_manger.dart';
 
@@ -37,19 +37,9 @@ class TapBarViews extends StatelessWidget {
               return SizedBox(
                   height: AppSize.s120.h,
                   child: Tab(
-                    child: Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      elevation: 5,
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: AppPadding.p15, right: AppPadding.p15),
-                        child: CachedImage(
-                            height: AppSize.s140.h,
-                            imageUrl: getRestaurantProduct
-                                .restaurantBranchesDate[index].image),
-                      ),
-                    ),
+                    child: CategoriesCard(
+                        index: index,
+                        getRestaurantProduct: getRestaurantProduct),
                   ));
             }));
       },

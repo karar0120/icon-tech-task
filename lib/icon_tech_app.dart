@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icon_tech_task/core/di/dependency_injection.dart';
 import 'package:icon_tech_task/core/helper/strings_manger.dart';
@@ -19,6 +20,16 @@ class IconTechApp extends StatelessWidget {
       designSize: const Size(AppSize.s375, AppSize.s812),
       minTextAdapt: true,
       child: MaterialApp(
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        supportedLocales: const [
+          Locale('ar'),
+          Locale('en'),
+        ],
+        locale: const Locale('ar'),
         title: AppString.users,
         debugShowCheckedModeBanner: false,
         theme: themeData,
