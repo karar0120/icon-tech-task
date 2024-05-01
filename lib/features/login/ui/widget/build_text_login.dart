@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icon_tech_task/core/helper/spacing.dart';
+import 'package:icon_tech_task/core/helper/strings_manger.dart';
+import 'package:icon_tech_task/core/helper/values_manger.dart';
 
 import '../../../../core/theming/styles.dart';
 
@@ -10,20 +11,14 @@ class BuildTextLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(
-          height: 40.h,
-        ),
+        verticalSpace(AppSize.s70),
         Text(
-          "Welcome Back",
+          AppString.welcomeBack,
           style: TextStyles.font24BlueBold,
         ),
-        verticalSpace(8),
-        Text(
-          "We're excited to have you back, can't wait to see what you've been up to since you last logged in.",
-          style: TextStyles.font14GrayRegular,
-        )
+        verticalSpace(AppSize.s30),
       ],
     );
   }

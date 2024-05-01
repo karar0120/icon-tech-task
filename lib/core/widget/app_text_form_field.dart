@@ -34,6 +34,7 @@ class AppTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      mouseCursor: MaterialStateMouseCursor.textable,
       controller: controller,
       decoration: InputDecoration(
         isDense: true,
@@ -42,7 +43,7 @@ class AppTextFormField extends StatelessWidget {
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
               borderSide: const BorderSide(
-                color: ColorsManager.mainBlue,
+                color: ColorsManager.mainGreen,
                 width: 1.3,
               ),
               borderRadius: BorderRadius.circular(16.0),
@@ -77,6 +78,7 @@ class AppTextFormField extends StatelessWidget {
         fillColor: backgroundColor ?? ColorsManager.moreLightGray,
         filled: true,
       ),
+      cursorColor: ColorsManager.mainGreen,
       obscureText: isObscureText ?? false,
       style:
           TextStyles.font14DarkBlueMedium.copyWith(color: ColorsManager.dark),

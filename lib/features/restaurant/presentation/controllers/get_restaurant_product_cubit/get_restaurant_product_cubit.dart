@@ -20,7 +20,7 @@ class GetRestaurantProductCubit extends Cubit<GetRestaurantProductState> {
 
   void emitGetRestaurantBranchesState({required int id}) async {
     emit(GetRestaurantBranchesProductLoading());
-    final response = await getRestaurantBranchesCategoriesUseCase.execute(20);
+    final response = await getRestaurantBranchesCategoriesUseCase.execute(id);
     response.when(success: (restaurantBranchesResponse) {
       restaurantBranchesDate
           .addAll(restaurantBranchesResponse.restaurantBranchesCategories);
@@ -32,9 +32,20 @@ class GetRestaurantProductCubit extends Cubit<GetRestaurantProductState> {
     });
   }
 
+  DataCategories? _selectedFilterItem;
+
+  DataCategories? get selectedCategoriesItem => _selectedFilterItem;
+
+  void setSelectedFilterCategories(
+      DataCategories dataCategories, int branchId) {
+    _selectedFilterItem = dataCategories;
+
+    refreshData(branchId: branchId);
+  }
+
   List<DataProduct> products = [];
 
-  int limit = 15;
+  int limit = 10;
   int pageNo = 1;
   bool hasMore = true;
   bool isLoaded = false;
@@ -46,23 +57,27 @@ class GetRestaurantProductCubit extends Cubit<GetRestaurantProductState> {
     emit(IncrementsNumberPage());
   }
 
-  Future<void> refreshData() async {
+  Future<void> refreshData({required int branchId}) async {
     products.clear();
     isScroll = false;
     isLoaded = false;
     hasMore = true;
     pageNo = 1;
-    //emitGetAnimalsState();
+
+    emitGetProductsState(branchId: branchId);
   }
 
-  void emitGetProductsState() async {
+  void emitGetProductsState({required int branchId}) async {
     emit(GetProductLoading());
     if (isLoaded) return;
     isLoaded = true;
     isScroll = false;
     final response = await getProductsUseCase.execute(
         GetRestaurantProductsQueryParams(
-            branchId: 20, categoryId: 45, page: pageNo, paginate: limit));
+            branchId: branchId,
+            categoryId: _selectedFilterItem?.id ?? 45,
+            page: pageNo,
+            paginate: limit));
     response.when(success: (animalsResponse) {
       products.addAll(animalsResponse.data.data);
       isLoaded = false;

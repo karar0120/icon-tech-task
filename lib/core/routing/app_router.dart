@@ -5,8 +5,10 @@ import 'package:icon_tech_task/core/helper/constances.dart';
 import 'package:icon_tech_task/core/routing/routes.dart';
 import 'package:icon_tech_task/features/login/logic/cubit/login_cubit.dart';
 import 'package:icon_tech_task/features/login/ui/login_screen.dart';
+import 'package:icon_tech_task/features/restaurant/domain/entity/products.dart';
 import 'package:icon_tech_task/features/restaurant/presentation/controllers/get_restaurant_branches_cubit/get_restaurant_branches_cubit.dart';
 import 'package:icon_tech_task/features/restaurant/presentation/controllers/get_restaurant_product_cubit/get_restaurant_product_cubit.dart';
+import 'package:icon_tech_task/features/restaurant/presentation/ui/screens/product_details_screen.dart';
 import 'package:icon_tech_task/features/restaurant/presentation/ui/screens/restaurant_branches_on_map.dart';
 import 'package:icon_tech_task/features/restaurant/presentation/ui/screens/restaurant_product.dart';
 
@@ -32,8 +34,18 @@ class AppRoute {
         return MaterialPageRoute(
             builder: (context) => BlocProvider<GetRestaurantProductCubit>(
                   create: (context) => getIt<GetRestaurantProductCubit>()
-                    ..emitGetProductsState(),
-                  child: const RestaurantProduct(),
+                    ..emitGetRestaurantBranchesState(
+                      id: settings.arguments as int,
+                    )
+                    ..refreshData(branchId: settings.arguments as int),
+                  child: RestaurantProduct(
+                    brunchId: settings.arguments as int,
+                  ),
+                ));
+      case Routes.getProductsDetailsScreen:
+        return MaterialPageRoute(
+            builder: (context) => ProductDetails(
+                  dataProduct: settings.arguments as DataProduct,
                 ));
 
       default:

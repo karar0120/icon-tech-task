@@ -10,7 +10,7 @@ class AppTextButton extends StatelessWidget {
   final double? verticalPadding;
   final double? buttonWidth;
   final double? buttonHeight;
-  final String buttonText;
+  final Widget buttonContent;
   final TextStyle textStyle;
   final VoidCallback onPressed;
   const AppTextButton({
@@ -21,7 +21,7 @@ class AppTextButton extends StatelessWidget {
     this.verticalPadding,
     this.buttonHeight,
     this.buttonWidth,
-    required this.buttonText,
+    required this.buttonContent,
     required this.textStyle,
     required this.onPressed,
   });
@@ -36,7 +36,7 @@ class AppTextButton extends StatelessWidget {
           ),
         ),
         backgroundColor: MaterialStatePropertyAll(
-          backgroundColor ?? ColorsManager.mainBlue,
+          backgroundColor ?? ColorsManager.mainGreen,
         ),
         padding: MaterialStateProperty.all<EdgeInsets>(
           EdgeInsets.symmetric(
@@ -49,10 +49,7 @@ class AppTextButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Text(
-        buttonText,
-        style: textStyle,
-      ),
+      child: buttonContent,
     );
   }
 }
