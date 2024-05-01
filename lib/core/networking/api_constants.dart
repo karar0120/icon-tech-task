@@ -1,7 +1,7 @@
 class ApiConstants {
   static const String baseUrl = "https://nottr.app/api/";
   static const String login = "auth/login";
-  static const String users = "users";
+  static const String restaurantBranchesOnMap = "branches";
 }
 
 class ApiErrors {
